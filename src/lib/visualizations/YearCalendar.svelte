@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import * as d3 from 'd3';
+	import { scrollProgress } from '../stores';
 
 	let container;
 	const startYear = new Date().getFullYear() - 5;
@@ -143,9 +144,9 @@
 					yearLabel.attr('opacity', 1);
 				})
 				.on('mouseleave', function() {
-					// Restore circles and month labels
-					svg.selectAll('.day').attr('opacity', null);
-					svg.selectAll('text:not(.year-label)').attr('opacity', null);
+					// Restore circles and month labels to original opacity
+					svg.selectAll('.day').attr('opacity', 1);
+					svg.selectAll('text:not(.year-label)').attr('opacity', 0.5);
 					// Hide year label
 					yearLabel.attr('opacity', 0);
 				});
@@ -236,7 +237,21 @@
 
 	onMount(async () => {
 		calendarData = await loadCsvData();
+		
+		// Subscribe to scroll progress
+		const unsubscribe = scrollProgress.subscribe(progress => {
+			const phase1El = document.querySelector('#phase-1');
+			if (!phase1El) return;
+			
+			// Fade in phase-1 synchronized with particles fading out - use same multiplier
+			const opacity = Math.min(1, progress * 2.5);
+			phase1El.style.opacity = opacity;
+			phase1El.style.pointerEvents = progress < 0.15 ? 'none' : 'auto';
+		});
+		
 		drawCalendar();
+		
+		return unsubscribe;
 	});
 </script>
 
@@ -244,7 +259,7 @@
 
 <style>
 	.year-calendar {
-		padding: 4rem 1.5rem;
+		padding: 0rem 1.5rem;
 	}
 
 	.year-block {
@@ -296,7 +311,7 @@
 
 	@media (min-width: 768px) {
 		.year-calendar {
-			padding: 6rem 3rem;
+			padding: 4rem 0rem;
 		}
 
 		.year-block h3 {

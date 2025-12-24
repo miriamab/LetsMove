@@ -1,5 +1,6 @@
 <script>
 	import Hero from '$lib/Hero.svelte';
+	import FloatingParticles from '$lib/FloatingParticles.svelte';
 	import YearCalendar from '$lib/visualizations/YearCalendar.svelte';
 	import ProjectGrid from '$lib/ProjectGrid.svelte';
 	import TextBlocks from '$lib/TextBlocks.svelte';
@@ -7,7 +8,7 @@
 	import Footer from '$lib/Footer.svelte';
 </script>
 
-<!-- Hero Section -->
+<FloatingParticles />
 <section id="hero" class="section">
 	<Hero />
 </section>
@@ -16,7 +17,9 @@
 <section id="phase-1" class="section">
 	<div class="phase-header">
 		<h2>DURATION</h2>
-		<p>Every single point of concious effort.</p>
+		<p>A comprehensive breakdown of time invested over 70 months. 
+			The Chronologic Grid maps the frequency of effort, while the Duration Analysis 
+			quantifies the cumulative hours across all disciplines.</p>
 	<YearCalendar
 	<ProjectGrid />
 </section>
@@ -62,10 +65,11 @@
 <style>
 	.section {
 		min-height: 100vh;
-		padding: 120px 0 0 0;
+		padding: 40px 0 0 0;
 		display: flex;
 		flex-direction: column;
 	}
+
 
 	.phase-header {
 		padding: 4rem 1.5rem 2rem;
@@ -83,13 +87,14 @@
 	.phase-header p {
 		font-size: 1rem;
 		color: #ff8b4c;
-		opacity: 0.6;
+		opacity: 0.7;
 		letter-spacing: 0.025em;
+		width: 36rem;
 	}
 
 	@media (min-width: 768px) {
 		.phase-header {
-			padding: 6rem 3rem 3rem;
+			padding: 0rem 3rem 3rem;
 		}
 
 		.phase-header h2 {
