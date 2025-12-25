@@ -10,7 +10,7 @@
 	const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 	const sportColors = {
 		Laufen: '#ff8b4c',
-		Cardio: '#ffb380',
+		'Cardio & Strength Training': '#ffb380',
 		'Indoor Cycling': '#ff9d66',
 		'Outdoor Cycling': '#ff9d66',
 		Fahrrad: '#ff9d66'
@@ -69,26 +69,26 @@
 				});
 			});
 
-			// Parse Cardio
-			cardioText.split('\n').slice(1).forEach(line => {
-				if (!line.trim()) return;
-				const cols = parseCSVLine(line);
-				const dateStr = cols[1];
-				const timeStr = cols[6];
-				if (!dateStr) return;
+			       // Parse Cardio
+			       cardioText.split('\n').slice(1).forEach(line => {
+				       if (!line.trim()) return;
+				       const cols = parseCSVLine(line);
+				       const dateStr = cols[1];
+				       const timeStr = cols[6];
+				       if (!dateStr) return;
 
-				const date = new Date(dateStr);
-				const weekKey = getWeekKey(date);
-				const dayKey = date.getDay() === 0 ? 6 : date.getDay() - 1;
+				       const date = new Date(dateStr);
+				       const weekKey = getWeekKey(date);
+				       const dayKey = date.getDay() === 0 ? 6 : date.getDay() - 1;
 
-				if (!weeklyData[weekKey]) weeklyData[weekKey] = {};
-				if (!weeklyData[weekKey][dayKey]) weeklyData[weekKey][dayKey] = [];
+				       if (!weeklyData[weekKey]) weeklyData[weekKey] = {};
+				       if (!weeklyData[weekKey][dayKey]) weeklyData[weekKey][dayKey] = [];
 
-				weeklyData[weekKey][dayKey].push({
-					type: 'Cardio',
-					duration: timeToMinutes(timeStr)
-				});
-			});
+				       weeklyData[weekKey][dayKey].push({
+					       type: 'Cardio & Strength Training',
+					       duration: timeToMinutes(timeStr)
+				       });
+			       });
 
 			// Parse Fahrrad
 			fahrradText.split('\n').slice(1).forEach(line => {

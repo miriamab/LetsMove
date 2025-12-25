@@ -5,6 +5,7 @@
 	import DistanceChart from '$lib/visualizations/DistanceChart.svelte';
 	import WeekCalendar from '$lib/visualizations/WeekCalendar.svelte';
 	import PaceMap from '$lib/visualizations/PaceMap.svelte';
+	import ActivityBubbles from '$lib/visualizations/ActivityBubbles.svelte';
 
 	import Footer from '$lib/Footer.svelte';
 </script>
@@ -19,8 +20,8 @@
 	<div class="phase-header">
 		<h2>DURATION</h2>
 		<p>Each orange dot represents a day with tracked athletic activity.</p>
-	<YearCalendar
-	<ProjectGrid />
+	</div>
+	<YearCalendar />
 </section>
 
 <!-- Phase 2: Distance -->
@@ -55,8 +56,9 @@
 <section id="phase-5" class="section">
 	<div class="phase-header">
 		<h2>FORCE</h2>
-		<p>blabla</p>
+		<p>Total training hours across all activities.</p>
 	</div>
+	<ActivityBubbles />
 </section>
 
 <Footer />

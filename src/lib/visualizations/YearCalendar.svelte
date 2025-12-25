@@ -48,7 +48,7 @@
 		try {
 			// Try to fetch from public folder
 			const files = [
-				{ name: 'Cardio_Daten.csv', path: '/Cardio_Daten.csv' },
+				   { name: 'Cardio & Strength Training', path: '/Cardio_Daten.csv' },
 				{ name: 'Laufen_Daten.csv', path: '/Laufen_Daten.csv' },
 				{ name: 'Fahrrad_Daten.csv', path: '/Fahrrad_Daten.csv' }
 			];
@@ -311,7 +311,7 @@
 
 	@media (min-width: 768px) {
 		.year-calendar {
-			padding: 4rem 0rem;
+			padding: 4rem 5rem;
 		}
 
 		.year-block h3 {
