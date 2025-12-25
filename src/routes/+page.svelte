@@ -4,7 +4,7 @@
 	import YearCalendar from '$lib/visualizations/YearCalendar.svelte';
 	import DistanceChart from '$lib/visualizations/DistanceChart.svelte';
 	import WeekCalendar from '$lib/visualizations/WeekCalendar.svelte';
-	import ProjectGrid from '$lib/ProjectGrid.svelte';
+	import PaceMap from '$lib/visualizations/PaceMap.svelte';
 
 	import Footer from '$lib/Footer.svelte';
 </script>
@@ -45,9 +45,10 @@
 <section id="phase-4" class="section">
 	<div class="phase-header">
 		<h2>PACE</h2>
-		<p>bla</p>
+		<p>A closer look into a single session where we can see path, pace, and heart rate.
+		</p>
 	</div>
-	<ProjectGrid />
+	<PaceMap />
 </section>
 
 <!-- Phase 5: Force -->

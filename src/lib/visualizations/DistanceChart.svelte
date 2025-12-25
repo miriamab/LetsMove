@@ -106,7 +106,7 @@
 		const height = 400 - margin.top - margin.bottom;
 
 		const xScale = d3.scaleLinear()
-			.domain([0, maxKm * 1.1])
+			.domain([0, maxKm * 1.02])
 			.range([0, width]);
 
 		const yScale = d3.scaleBand()
@@ -150,12 +150,14 @@
 		chartData.forEach((d) => {
 			const y = yScale(d.year);
 			const numCircles = Math.round((d.km / maxKm) * 80);
+			const kmPerCircle = maxKm / 80;
 
 			for (let i = 0; i < numCircles; i++) {
-				const x = i * (cellSize + cellGapX);
+				const kmPosition = (i + 0.5) * kmPerCircle;
+				const x = xScale(kmPosition);
 
 				g.append('circle')
-					.attr('cx', x + cellSize / 2)
+					.attr('cx', x)
 					.attr('cy', y + yScale.bandwidth() / 2)
 					.attr('r', cellSize / 2)
 					.attr('fill', '#ff8b4c')

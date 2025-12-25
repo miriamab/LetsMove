@@ -3,6 +3,7 @@
 
 	let weeks = $state({ peak: null, low: null, average: null });
 	let selectedWeek = $state('peak');
+	let dropdownOpen = $state(false);
 	let currentWeek = $state(null);
 	let loading = $state(true);
 
@@ -224,14 +225,50 @@
 		<p>Loading week data...</p>
 	{:else if currentWeek}
 		<div class="controls">
-			<label>
-				Week Type:
-				<select bind:value={selectedWeek} onchange={(e) => (currentWeek = weeks[e.target.value])}>
-					<option value="peak">Peak (Most Hours)</option>
-					<option value="average">Average</option>
-					<option value="low">Low Intensity</option>
-				</select>
-			</label>
+			<label>Week Type:</label>
+			<div class="dropdown" class:open={dropdownOpen}>
+				<button class="dropdown-button" onclick={() => (dropdownOpen = !dropdownOpen)}>
+					{selectedWeek === 'peak' ? 'Peak (Most Hours)' : selectedWeek === 'average' ? 'Average' : 'Low Intensity'}
+					<span class="dropdown-arrow" class:rotated={dropdownOpen}>▼</span>
+				</button>
+				{#if dropdownOpen}
+					<div class="dropdown-menu">
+						<button
+							class="dropdown-item"
+							class:active={selectedWeek === 'peak'}
+							onclick={() => {
+								selectedWeek = 'peak';
+								currentWeek = weeks['peak'];
+								dropdownOpen = false;
+							}}
+						>
+							Peak (Most Hours)
+						</button>
+						<button
+							class="dropdown-item"
+							class:active={selectedWeek === 'average'}
+							onclick={() => {
+								selectedWeek = 'average';
+								currentWeek = weeks['average'];
+								dropdownOpen = false;
+							}}
+						>
+							Average
+						</button>
+						<button
+							class="dropdown-item"
+							class:active={selectedWeek === 'low'}
+							onclick={() => {
+								selectedWeek = 'low';
+								currentWeek = weeks['low'];
+								dropdownOpen = false;
+							}}
+						>
+							Low Intensity
+						</button>
+					</div>
+				{/if}
+			</div>
 		</div>
 
 		<div class="week-info">
@@ -275,7 +312,8 @@
 		margin-bottom: 2rem;
 	}
 
-	.controls label {
+	.controls {
+		margin-bottom: 2rem;
 		display: flex;
 		gap: 1rem;
 		align-items: center;
@@ -283,7 +321,11 @@
 		font-size: 1rem;
 	}
 
-	.controls select {
+	.dropdown {
+		position: relative;
+	}
+
+	.dropdown-button {
 		padding: 0.5rem 1rem;
 		background-color: #0f0f0f;
 		color: #ff8b4c;
@@ -291,6 +333,63 @@
 		border-radius: 4px;
 		cursor: pointer;
 		font-family: inherit;
+		font-size: 0.95rem;
+		transition: all 0.2s ease;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-width: 180px;
+		white-space: nowrap;
+	}
+
+	.dropdown-button:hover {
+		background-color: rgba(255, 139, 76, 0.1);
+	}
+
+	.dropdown-arrow {
+		font-size: 0.7rem;
+		transition: transform 0.2s ease;
+	}
+
+	.dropdown-arrow.rotated {
+		transform: rotate(180deg);
+	}
+
+	.dropdown-menu {
+		display: block;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background-color: #0f0f0f;
+		border: 1px solid #ff8b4c;
+		border-top: none;
+		border-radius: 0 0 4px 4px;
+		min-width: 380px;
+		z-index: 10;
+	}
+
+	.dropdown-item {
+		display: block;
+		width: 100%;
+		padding: 0.75rem 1rem;
+		background: none;
+		border: none;
+		color: #ff8b4c;
+		text-align: left;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		font-family: inherit;
+		font-size: 0.95rem;
+		white-space: nowrap;
+	}
+
+	.dropdown-item:hover {
+		background-color: rgba(255, 139, 76, 0.15);
+	}
+
+	.dropdown-item.active {
+		background-color: rgba(255, 139, 76, 0.25);
+		font-weight: 600;
 	}
 
 	.week-info {
