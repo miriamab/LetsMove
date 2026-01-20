@@ -1,13 +1,54 @@
+<script>
+	import { onMount } from 'svelte';
+
+	let activeSection = $state('hero');
+
+	function updateActiveSection() {
+		const sections = ['hero', 'phase-1', 'phase-2', 'phase-3', 'phase-4', 'phase-5'];
+		const scrollPosition = window.scrollY;
+		const windowHeight = window.innerHeight;
+		const threshold = windowHeight * 0.5; // 50% of viewport height
+
+		// Find which section is most visible
+		let currentSection = 'hero';
+		
+		for (const sectionId of sections) {
+			const element = document.getElementById(sectionId);
+			if (element) {
+				const rect = element.getBoundingClientRect();
+				const elementTop = rect.top + scrollPosition;
+				const elementBottom = elementTop + rect.height;
+				
+				// Check if section is currently visible and above the threshold
+				if (scrollPosition + threshold >= elementTop && scrollPosition + threshold < elementBottom) {
+					currentSection = sectionId;
+				}
+			}
+		}
+		
+		activeSection = currentSection;
+	}
+
+	onMount(() => {
+		window.addEventListener('scroll', updateActiveSection);
+		updateActiveSection(); // Check initial position
+
+		return () => {
+			window.removeEventListener('scroll', updateActiveSection);
+		};
+	});
+</script>
+
 <header>
 	<div class="header-gradient">
 		<nav>
-			<a href="#hero" class="logo line-decoration">Miriam Abbas</a>
+			<a href="#hero" class="logo line-decoration" class:active={activeSection === 'hero'}>Miriam Abbas</a>
 			<div class="nav-links">
-				<a href="#phase-1" class="line-decoration">Duration</a>
-				<a href="#phase-2" class="line-decoration">Distance</a>
-				<a href="#phase-3" class="line-decoration">Endurance</a>
-				<a href="#phase-4" class="line-decoration">Pace</a>
-				<a href="#phase-5" class="line-decoration">Force</a>
+				<a href="#phase-1" class="line-decoration" class:active={activeSection === 'phase-1'}>Duration</a>
+				<a href="#phase-2" class="line-decoration" class:active={activeSection === 'phase-2'}>Distance</a>
+				<a href="#phase-3" class="line-decoration" class:active={activeSection === 'phase-3'}>Endurance</a>
+				<a href="#phase-4" class="line-decoration" class:active={activeSection === 'phase-4'}>Pace</a>
+				<a href="#phase-5" class="line-decoration" class:active={activeSection === 'phase-5'}>Force</a>
 			</div>
 		</nav>
 	</div>
@@ -72,7 +113,12 @@
 		color: var(--foreground);
 	}
 
-	.nav-links a:hover {
+	.nav-links a:hover,
+	.nav-links a.active {
+		opacity: 1;
+	}
+
+	.logo.active {
 		opacity: 1;
 	}
 

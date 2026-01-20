@@ -9,9 +9,9 @@
 
 	const activityColors = {
 		'Laufen': '#ff8b4c',
-		'Laufband': '#ff9d66',
-		'Fahrrad': '#ff9d66',
-		'Indoor Cycling': '#ffb380',
+		'Laufband': '#ff8b4c',
+		'Fahrrad': '#ff8b4c',
+		'Indoor Cycling': '#ff8b4c',
 		'Cardio & Strength Training': '#ff8b4c'
 	};
 

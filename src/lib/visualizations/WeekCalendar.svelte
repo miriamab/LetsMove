@@ -10,10 +10,10 @@
 	const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 	const sportColors = {
 		Laufen: '#ff8b4c',
-		'Cardio & Strength Training': '#ffb380',
-		'Indoor Cycling': '#ff9d66',
-		'Outdoor Cycling': '#ff9d66',
-		Fahrrad: '#ff9d66'
+		'Cardio & Strength Training': '#ff8b4c',
+		'Indoor Cycling': '#ff8b4c',
+		'Outdoor Cycling': '#ff8b4c',
+		Fahrrad: '#ff8b4c'
 	};
 
 	function timeToMinutes(timeStr) {
