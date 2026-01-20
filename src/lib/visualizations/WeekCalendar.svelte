@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 
 	let weeks = $state({ peak: null, low: null, average: null });
 	let selectedWeek = $state('peak');
@@ -34,9 +35,9 @@
 	async function loadAllData() {
 		try {
 			const [laufenRes, cardioRes, fahrradRes] = await Promise.all([
-				fetch('/Laufen_Daten.csv'),
-				fetch('/Cardio_Daten.csv'),
-				fetch('/Fahrrad_Daten.csv')
+				fetch(`${base}/Laufen_Daten.csv`),
+				fetch(`${base}/Cardio_Daten.csv`),
+				fetch(`${base}/Fahrrad_Daten.csv`)
 			]);
 
 			const [laufenText, cardioText, fahrradText] = await Promise.all([

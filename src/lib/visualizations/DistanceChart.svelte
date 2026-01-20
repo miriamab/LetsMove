@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	import * as d3 from 'd3';
 
 	let container;
@@ -73,7 +74,7 @@
 
 	async function loadDistanceData() {
 		try {
-			const response = await fetch('/Laufen_Daten.csv');
+			const response = await fetch(`${base}/Laufen_Daten.csv`);
 			if (response.ok) {
 				const text = await response.text();
 				const yearData = parseCsvForDistance(text);

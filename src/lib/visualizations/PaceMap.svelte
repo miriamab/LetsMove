@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 
 	let runs = $state([]);
 	let selectedRun = $state(0);
@@ -179,7 +180,7 @@
 		try {
 			const loadedRuns = [];
 			for (const file of runFiles) {
-				const response = await fetch(`/single_runs/${file}`);
+				const response = await fetch(`${base}/single_runs/${file}`);
 				if (response.ok) {
 					const gpxText = await response.text();
 					const runData = await parseGPX(gpxText);

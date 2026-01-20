@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	import * as d3 from 'd3';
 
 	let container;
@@ -59,9 +60,9 @@
 		try {
 			// Try to fetch from public folder
 			const files = [
-				   { name: 'Cardio & Strength Training', path: '/Cardio_Daten.csv' },
-				{ name: 'Laufen_Daten.csv', path: '/Laufen_Daten.csv' },
-				{ name: 'Fahrrad_Daten.csv', path: '/Fahrrad_Daten.csv' }
+				   { name: 'Cardio & Strength Training', path: `${base}/Cardio_Daten.csv` },
+				{ name: 'Laufen_Daten.csv', path: `${base}/Laufen_Daten.csv` },
+				{ name: 'Fahrrad_Daten.csv', path: `${base}/Fahrrad_Daten.csv` }
 			];
 
 			for (const file of files) {
