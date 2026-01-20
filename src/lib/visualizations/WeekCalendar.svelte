@@ -10,11 +10,11 @@
 
 	const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 	const sportColors = {
-		Laufen: '#ff8b4c',
+		Running: '#ff8b4c',
 		'Cardio & Strength Training': '#ff8b4c',
 		'Indoor Cycling': '#ff8b4c',
 		'Outdoor Cycling': '#ff8b4c',
-		Fahrrad: '#ff8b4c'
+		Cycling: '#ff8b4c'
 	};
 
 	function timeToMinutes(timeStr) {
@@ -68,7 +68,7 @@
 				if (!weeklyData[weekKey][dayKey]) weeklyData[weekKey][dayKey] = [];
 
 				weeklyData[weekKey][dayKey].push({
-					type: 'Laufen',
+					type: 'Running',
 					duration: timeToMinutes(timeStr)
 				});
 			});
@@ -117,7 +117,7 @@
 
 				const actType = cols[0];
 				weeklyData[weekKey][dayKey].push({
-					type: actType.includes('Laufband') ? 'Fahrrad' : 'Fahrrad',
+					type: actType.includes('Laufband') ? 'Cycling' : 'Cycling',
 					duration: timeToMinutes(timeStr)
 				});
 			});

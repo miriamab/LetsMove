@@ -9,9 +9,9 @@
 	let time = 0;
 
 	const activityColors = {
-		'Laufen': '#ff8b4c',
-		'Laufband': '#ff8b4c',
-		'Fahrrad': '#ff8b4c',
+		'Running': '#ff8b4c',
+		'Treadmill': '#ff8b4c',
+		'Cycling': '#ff8b4c',
 		'Indoor Cycling': '#ff8b4c',
 		'Cardio & Strength Training': '#ff8b4c'
 	};
@@ -60,11 +60,11 @@
 			]);
 
 			const activityTotals = {
-				'Laufen': 0,
-				'Laufband': 0,
-				'Fahrrad': 0,
+				'Running': 0,
+				'Treadmill': 0,
+				'Cycling': 0,
 				'Indoor Cycling': 0,
-				   'Cardio & Strength Training': 0
+				'Cardio & Strength Training': 0
 			};
 
 			// Parse Laufen - check activity type column
@@ -81,9 +81,9 @@
 				const minutes = timeToMinutes(timeStr);
 
 				if (activityType.toLowerCase().includes('laufband') || activityType.toLowerCase().includes('treadmill')) {
-					activityTotals['Laufband'] += minutes;
+					activityTotals['Treadmill'] += minutes;
 				} else {
-					activityTotals['Laufen'] += minutes;
+					activityTotals['Running'] += minutes;
 				}
 			});
 
@@ -117,7 +117,7 @@
 				if (activityType.toLowerCase().includes('indoor') || activityType.toLowerCase().includes('spinning')) {
 					activityTotals['Indoor Cycling'] += minutes;
 				} else {
-					activityTotals['Fahrrad'] += minutes;
+					activityTotals['Cycling'] += minutes;
 				}
 			});
 
