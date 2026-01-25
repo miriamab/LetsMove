@@ -1,10 +1,16 @@
 # Data Visualization: Let's move
 
+Page available on: 
+https://miriamab.github.io/LetsMove/
+
 ![](readme_image.png)
 
 This project is a data visualization built with Svelte and Vite. It visualizes personal activity datasets like running, cycling, cardio and strength training.
 
-## Getting Started
+## :small_orange_diamond: About
+This project was created as a semester project for the course Information Design in the Wintersemester 2025/26. It demonstrates how to turn raw activity data into engaging visualizations using Svelte.
+
+## :small_orange_diamond: Getting Started
 
 ### Prerequisites
 - [Node.js] (v16 or newer recommended)
@@ -23,6 +29,3 @@ Start the local development server with:
 ```bash
 npm run dev
 ```
-
-## About
-This project was created as a semester project for the course Information Design in the Wintersemester 2025/26. It demonstrates how to turn raw activity data into engaging visualizations using Svelte.
